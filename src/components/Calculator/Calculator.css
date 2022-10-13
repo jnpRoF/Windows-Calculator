@@ -16,13 +16,16 @@
 }
 
 .calc-history {
-  border: 1px solid #ccc;
   min-height: 100px;
   height: 100px;
   overflow-y: auto;
 }
 .calc-current {
   min-height: 40px;
+}
+.number {
+  font-size: 2em;
+  font-weight: bold;
 }
 button {
   padding: 20px;
