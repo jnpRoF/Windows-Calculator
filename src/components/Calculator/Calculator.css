@@ -14,27 +14,35 @@
 }
 .calc_controls {
   width: 100%;
-  height: 40px;
+  /* height: 40px; */
+  height: 20%;
   display: flex;
 }
 .calc_screen {
-  height: 120px;
+  /* height: 120px; */
+  height: 80%;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: end;
 }
 .memory_operators {
-  height: 40px;
+  height: 7%;
   display: grid;
   grid-template-columns: repeat(13, 1fr);
 }
 .calc_body_operators {
-  height: 71.2%;
+  height: 93%;
   border: 1px solid #ccc;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 .result {
   font-size: 48px;
+}
+.calc_view {
+  height: 20%;
+}
+.calc_body_controls {
+  height: 80%;
 }
