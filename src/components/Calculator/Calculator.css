@@ -1,0 +1,32 @@
+.calculator {
+  border: 1px solid black;
+  margin: 100px auto;
+  width: 300px;
+}
+.btn-cont {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.screen-history,
+.screen-current,
+.screen-result {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: right;
+}
+
+.calc-history {
+  border: 1px solid #ccc;
+  min-height: 100px;
+  height: 100px;
+  overflow-y: auto;
+}
+.calc-current {
+  min-height: 40px;
+}
+button {
+  padding: 20px;
+}
+.ac {
+  grid-column: span 5;
+}
