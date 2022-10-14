@@ -96,14 +96,15 @@ class Calculator2 extends Component {
   handleDelete = () => {
     const deleteLastCharacter = (str) => {
       console.log(typeof str);
-      if (typeof str == "string") {
-        return str.slice(-str.length, -1);
-      } else {
-        str = `${str}`; //how is it that i convert it to string here and it affects the state
-        return str.slice(-str.length, -1);
-      }
-      // typeof str == "string" ? str : `${str}`;
-      // console.log(typeof str);
+      // if (typeof str == "string") {
+      //   return str.slice(-str.length, -1);
+      // } else {
+      //   str = `${str}`; //how is it that i convert it to string here and it affects the state
+      //   return str.slice(-str.length, -1);
+      // }
+      return typeof str == "string"
+        ? str.slice(-str.length, -1)
+        : `${str}`.slice(-str.length, -1);
     };
     if (this.state.currentOperation.secondOperand) {
       this.setState({
