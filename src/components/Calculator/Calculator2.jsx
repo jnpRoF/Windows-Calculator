@@ -11,13 +11,13 @@ class Calculator2 extends Component {
     result: 0,
     history: [],
     currentOperation: {
-      firstOperand: 0,
-      secondOperand: 3,
+      firstOperand: "",
+      secondOperand: "",
       operator: "",
     },
   };
   // handleOperandDisplay = () => {
-  //   if (this.state.currentOperation.operator !== "") {
+  //   if (this.state.currentOperation.operator) {
   //     return this.state.currentOperation.secondOperand;
   //   } else {
   //     console.log("first");
@@ -25,10 +25,11 @@ class Calculator2 extends Component {
   //   }
   // };
   handleFirstOperand = (e) => {
-    console.log(e.target.textContent);
     this.setState({
       currentOperation: {
-        firstOperand: e.target.textContent,
+        ...this.state.currentOperation,
+        firstOperand:
+          this.state.currentOperation.firstOperand + e.target.textContent,
       },
     });
   };
@@ -36,21 +37,38 @@ class Calculator2 extends Component {
   handleSecondOperand = (e) => {
     this.setState({
       currentOperation: {
-        secondOperand: e.target.textContent,
+        ...this.state.currentOperation,
+        secondOperand:
+          this.state.currentOperation.secondOperand + e.target.textContent,
       },
     });
   };
 
   handleOperandClick = (e) => {
-    console.log("ui");
     if (this.state.currentOperation.operator) {
       this.handleSecondOperand(e);
+      console.log(this.state.currentOperation.secondOperand);
     } else {
       this.handleFirstOperand(e);
+      console.log(this.state.currentOperation.firstOperand);
     }
   };
 
+  handleOperatorClick = (e) => {
+    this.setState({
+      currentOperation: {
+        ...this.state.currentOperation,
+        operator: e.target.textContent,
+      },
+    });
+    console.log(e.target.textContent);
+  };
+
   render() {
+    console.log(
+      this.state.currentOperation.firstOperand,
+      this.state.currentOperation.secondOperand
+    );
     return (
       <div className="calculator">
         <div className="calc_body">
@@ -61,11 +79,15 @@ class Calculator2 extends Component {
             </div>
             <Screen
               className="calc_screen"
-              children={
-                this.state.currentOperation.operator
-                  ? this.state.currentOperation.secondOperand
-                  : this.state.currentOperation.firstOperand
-              }
+              firstOperandDigit={this.state.currentOperation.firstOperand}
+              operator={this.state.currentOperation.operator}
+              secondOperandDigit={this.state.currentOperation.secondOperand}
+              // children={
+              //   // this.handleOperandDisplay()
+              //   this.state.currentOperation.operator
+              //     ? this.state.currentOperation.secondOperand
+              //     : this.state.currentOperation.firstOperand
+              // }
             />
           </div>
           <div className="calc_body_controls">
@@ -77,14 +99,22 @@ class Calculator2 extends Component {
               <MemoryBtn children="MS" className="bold memory_btn" />
             </div>
             <div className="calc_body_operators">
-              <Button className="operator number" children="%" />
+              <Button
+                className="operator number"
+                children="%"
+                onClick={this.handleOperatorClick}
+              />
               <Button className="operator number" children="CE" />
               <Button className="operator number" children="C" />
               <Button className="operator number" children="CANCEL" />
               <Button className="operator number" children="1/x" />
               <Button className="operator number" children="xx" />
               <Button className="operator number" children="ss" />
-              <Button className="operator number" children="/" />
+              <Button
+                className="operator number"
+                children="/"
+                onClick={this.handleOperatorClick}
+              />
               <Button
                 className="operand number bold"
                 children="7"
@@ -102,8 +132,8 @@ class Calculator2 extends Component {
               />
               <Button
                 className="operator number"
-                children="X"
-                onClick={this.handleOperandClick}
+                children="x"
+                onClick={this.handleOperatorClick}
               />
               <Button
                 className="operand number bold"
@@ -120,7 +150,11 @@ class Calculator2 extends Component {
                 children="6"
                 onClick={this.handleOperandClick}
               />
-              <Button className="operator number" children="-" />
+              <Button
+                className="operator number"
+                children="-"
+                onClick={this.handleOperatorClick}
+              />
               <Button
                 className="operand number bold"
                 children="1"
@@ -136,7 +170,11 @@ class Calculator2 extends Component {
                 children="3"
                 onClick={this.handleOperandClick}
               />
-              <Button className="operator number" children="+" />
+              <Button
+                className="operator number"
+                children="+"
+                onClick={this.handleOperatorClick}
+              />
               <Button className="operator number" children="+/-" />
               <Button
                 className="operand number bold"
@@ -158,3 +196,7 @@ class Calculator2 extends Component {
 }
 
 export default Calculator2;
+
+//so why is it not working if i put !== in the screen
+
+// what does stanley when he was talking about putting a jsx inside a function

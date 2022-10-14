@@ -80,3 +80,9 @@ button {
 .equal:hover {
   background-color: #494949;
 }
+.first_operand,
+.second_operand,
+.current_operator {
+  font-size: 48px;
+  font-weight: bold;
+}
