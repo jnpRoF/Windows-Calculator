@@ -54,13 +54,42 @@ class Calculator2 extends Component {
     }
   };
 
+  calculate = (operator, firstOperand, secondOperand) => {
+    switch (operator) {
+      case "+":
+        return +firstOperand + +secondOperand;
+      case "/":
+        return +firstOperand / +secondOperand;
+      case "-":
+        return +firstOperand - +secondOperand;
+      case "x":
+        return +firstOperand * +secondOperand;
+
+      default:
+        break;
+    }
+  };
   handleOperatorClick = (e) => {
-    this.setState({
-      currentOperation: {
-        ...this.state.currentOperation,
-        operator: e.target.textContent,
-      },
-    });
+    if (!this.state.currentOperation.secondOperand) {
+      this.setState({
+        currentOperation: {
+          ...this.state.currentOperation,
+          operator: e.target.textContent,
+        },
+      });
+    } else {
+      this.setState({
+        currentOperation: {
+          firstOperand: this.calculate(
+            this.state.currentOperation.operator,
+            +this.state.currentOperation.firstOperand,
+            +this.state.currentOperation.secondOperand
+          ),
+          secondOperand: "",
+          operator: e.target.textContent,
+        },
+      });
+    }
     console.log(e.target.textContent);
   };
 
