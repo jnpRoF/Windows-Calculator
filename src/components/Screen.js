@@ -4,6 +4,7 @@ const Screen = ({
   className,
   operator,
   result,
+  current,
   children,
 }) => {
   // console.log(children, operator);
@@ -14,7 +15,7 @@ const Screen = ({
         <span className="current_operator">{operator}</span>
         <span className="second_operand">{secondOperandDigit}</span>
       </div>
-      <p className="result">{result}</p>
+      <p className="result">{current}</p>
       {/* <p className="result">{children}</p> */}
     </div>
   );

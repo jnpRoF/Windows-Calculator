@@ -8,14 +8,27 @@ import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
-    result: 0,
+    result: "",
     history: [],
     currentOperation: {
       firstOperand: "",
       secondOperand: "",
       operator: "",
+      current: 0,
     },
   };
+
+  // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
+
+  handleCurrent = (e) => {
+    this.setState({
+      currentOperation: {
+        ...this.state.currentOperation,
+        current: e.target.textContent,
+      },
+    });
+  };
+
   // handleOperandDisplay = () => {
   //   if (this.state.currentOperation.operator) {
   //     return this.state.currentOperation.secondOperand;
@@ -24,12 +37,12 @@ class Calculator2 extends Component {
   //     return this.state.currentOperation.firstOperand;
   //   }
   // };
-  handleFirstOperand = (e) => {
+  handleFirstOperand = () => {
+    console.log(this.state.currentOperation.current);
     this.setState({
       currentOperation: {
         ...this.state.currentOperation,
-        firstOperand:
-          this.state.currentOperation.firstOperand + e.target.textContent,
+        firstOperand: this.state.currentOperation.current,
       },
     });
   };
@@ -70,10 +83,15 @@ class Calculator2 extends Component {
     }
   };
   handleOperatorClick = (e) => {
+    this.handleFirstOperand();
+    console.log(this.state.currentOperation.firstOperand);
     if (!this.state.currentOperation.secondOperand) {
       this.setState({
         currentOperation: {
           ...this.state.currentOperation,
+          firstOperand:
+            +this.state.currentOperation.current +
+            +this.state.currentOperation.firstOperand,
           operator: e.target.textContent,
         },
       });
@@ -168,6 +186,7 @@ class Calculator2 extends Component {
               operator={this.state.currentOperation.operator}
               secondOperandDigit={this.state.currentOperation.secondOperand}
               result={this.state.result}
+              current={this.state.currentOperation.current}
               // children={
               //   // this.handleOperandDisplay()
               //   this.state.currentOperation.operator
@@ -207,19 +226,19 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 7
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 8
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 9
               </Button>
@@ -231,19 +250,19 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 4
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 5
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 6
               </Button>
@@ -255,19 +274,19 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 1
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 2
               </Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 3
               </Button>
@@ -280,7 +299,7 @@ class Calculator2 extends Component {
               <Button className="operator number">+/-</Button>
               <Button
                 className="operand number bold"
-                onClick={this.handleOperandClick}
+                onClick={this.handleCurrent}
               >
                 0
               </Button>
@@ -310,3 +329,5 @@ export default Calculator2;
 //reason for having separate props for operators
 
 //can we have two return statements if not why?
+
+//what happens when we run two setStates consecutivelu, do they run simultaneuosly or what
