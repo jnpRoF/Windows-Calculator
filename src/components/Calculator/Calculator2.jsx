@@ -7,7 +7,49 @@ import Button from "../Button";
 import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
-  state = {};
+  state = {
+    result: 0,
+    history: [],
+    currentOperation: {
+      firstOperand: 0,
+      secondOperand: 3,
+      operator: "",
+    },
+  };
+  // handleOperandDisplay = () => {
+  //   if (this.state.currentOperation.operator !== "") {
+  //     return this.state.currentOperation.secondOperand;
+  //   } else {
+  //     console.log("first");
+  //     return this.state.currentOperation.firstOperand;
+  //   }
+  // };
+  handleFirstOperand = (e) => {
+    console.log(e.target.textContent);
+    this.setState({
+      currentOperation: {
+        firstOperand: e.target.textContent,
+      },
+    });
+  };
+
+  handleSecondOperand = (e) => {
+    this.setState({
+      currentOperation: {
+        secondOperand: e.target.textContent,
+      },
+    });
+  };
+
+  handleOperandClick = (e) => {
+    console.log("ui");
+    if (this.state.currentOperation.operator) {
+      this.handleSecondOperand(e);
+    } else {
+      this.handleFirstOperand(e);
+    }
+  };
+
   render() {
     return (
       <div className="calculator">
@@ -17,7 +59,14 @@ class Calculator2 extends Component {
               <Navigation style={{ margin: "10px" }} />
               <Mode style={{ margin: "10px" }} />
             </div>
-            <Screen className="calc_screen" children="0" />
+            <Screen
+              className="calc_screen"
+              children={
+                this.state.currentOperation.operator
+                  ? this.state.currentOperation.secondOperand
+                  : this.state.currentOperation.firstOperand
+              }
+            />
           </div>
           <div className="calc_body_controls">
             <div className="memory_operators">
@@ -36,20 +85,64 @@ class Calculator2 extends Component {
               <Button className="operator number" children="xx" />
               <Button className="operator number" children="ss" />
               <Button className="operator number" children="/" />
-              <Button className="operand number bold" children="7" />
-              <Button className="operand number bold" children="8" />
-              <Button className="operand number bold" children="9" />
-              <Button className="operator number" children="X" />
-              <Button className="operand number bold" children="4" />
-              <Button className="operand number bold" children="5" />
-              <Button className="operand number bold" children="6" />
+              <Button
+                className="operand number bold"
+                children="7"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="8"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="9"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operator number"
+                children="X"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="4"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="5"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="6"
+                onClick={this.handleOperandClick}
+              />
               <Button className="operator number" children="-" />
-              <Button className="operand number bold" children="1" />
-              <Button className="operand number bold" children="2" />
-              <Button className="operand number bold" children="3" />
+              <Button
+                className="operand number bold"
+                children="1"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="2"
+                onClick={this.handleOperandClick}
+              />
+              <Button
+                className="operand number bold"
+                children="3"
+                onClick={this.handleOperandClick}
+              />
               <Button className="operator number" children="+" />
               <Button className="operator number" children="+/-" />
-              <Button className="operand number bold" children="0" />
+              <Button
+                className="operand number bold"
+                children="0"
+                onClick={this.handleOperandClick}
+              />
               <Button className="operator number" children="." />
               <Button className="equal number" children="=" />
             </div>
