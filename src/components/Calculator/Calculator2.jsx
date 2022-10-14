@@ -93,6 +93,42 @@ class Calculator2 extends Component {
     console.log(e.target.textContent);
   };
 
+  handleDelete = () => {
+    const deleteLastCharacter = (str) => {
+      return str.slice(-str.length, -1);
+    };
+    if (this.state.currentOperation.secondOperand) {
+      this.setState({
+        currentOperation: {
+          ...this.state.currentOperation,
+          secondOperand: deleteLastCharacter(
+            this.state.currentOperation.secondOperand
+          ),
+        },
+      });
+
+      return;
+    }
+    if (this.state.currentOperation.operator) {
+      this.setState({
+        currentOperation: {
+          ...this.state.currentOperation,
+          operator: deleteLastCharacter(this.state.currentOperation.operator),
+        },
+      });
+      return;
+    }
+    if (this.state.currentOperation.firstOperand) {
+      return this.setState({
+        currentOperation: {
+          ...this.state.currentOperation,
+          firstOperand: deleteLastCharacter(
+            this.state.currentOperation.firstOperand
+          ),
+        },
+      });
+    }
+  };
   render() {
     console.log(
       this.state.currentOperation.firstOperand,
@@ -135,7 +171,11 @@ class Calculator2 extends Component {
               />
               <Button className="operator number" children="CE" />
               <Button className="operator number" children="C" />
-              <Button className="operator number" children="CANCEL" />
+              <Button
+                className="operator number"
+                children="DELETE"
+                onClick={this.handleDelete}
+              />
               <Button className="operator number" children="1/x" />
               <Button className="operator number" children="xx" />
               <Button className="operator number" children="ss" />
@@ -229,3 +269,4 @@ export default Calculator2;
 //so why is it not working if i put !== in the screen
 
 // what does stanley when he was talking about putting a jsx inside a function
+//do opening and closing tags
