@@ -95,7 +95,15 @@ class Calculator2 extends Component {
 
   handleDelete = () => {
     const deleteLastCharacter = (str) => {
-      return str.slice(-str.length, -1);
+      console.log(typeof str);
+      if (typeof str == "string") {
+        return str.slice(-str.length, -1);
+      } else {
+        str = `${str}`; //how is it that i convert it to string here and it affects the state
+        return str.slice(-str.length, -1);
+      }
+      // typeof str == "string" ? str : `${str}`;
+      // console.log(typeof str);
     };
     if (this.state.currentOperation.secondOperand) {
       this.setState({
@@ -286,3 +294,5 @@ export default Calculator2;
 //do opening and closing tags
 
 //reason for having separate props for operators
+
+//can we have two return statements if not why?
