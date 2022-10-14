@@ -21,37 +21,37 @@ class Calculator2 extends Component {
           </div>
           <div className="calc_body_controls">
             <div className="memory_operators">
-              <MemoryBtn children="MC" />
-              <MemoryBtn children="MR" />
-              <MemoryBtn children="M+" />
-              <MemoryBtn children="M-" />
-              <MemoryBtn children="MS" />
+              <MemoryBtn children="MC" className="unbold memory_btn" />
+              <MemoryBtn children="MR" className="unbold memory_btn" />
+              <MemoryBtn children="M+" className="bold memory_btn" />
+              <MemoryBtn children="M-" className="bold memory_btn" />
+              <MemoryBtn children="MS" className="bold memory_btn" />
             </div>
             <div className="calc_body_operators">
-              <Button className="operator" children="%" />
-              <Button className="operator" children="CE" />
-              <Button className="operator" children="C" />
-              <Button className="operator" children="CANCEL" />
-              <Button className="operator" children="1/x" />
-              <Button className="operator" children="xx" />
-              <Button className="operator" children="ss" />
-              <Button className="operator" children="/" />
-              <Button className="operand" children="7" />
-              <Button className="operand" children="8" />
-              <Button className="operand" children="9" />
-              <Button className="operator" children="X" />
-              <Button className="operand" children="4" />
-              <Button className="operand" children="5" />
-              <Button className="operand" children="6" />
-              <Button className="operator" children="-" />
-              <Button className="operand" children="1" />
-              <Button className="operand" children="2" />
-              <Button className="operand" children="3" />
-              <Button className="operator" children="+" />
-              <Button className="operator" children="+/-" />
-              <Button className="operand" children="0" />
-              <Button className="operator" children="." />
-              <Button className="equal" children="=" />
+              <Button className="operator number" children="%" />
+              <Button className="operator number" children="CE" />
+              <Button className="operator number" children="C" />
+              <Button className="operator number" children="CANCEL" />
+              <Button className="operator number" children="1/x" />
+              <Button className="operator number" children="xx" />
+              <Button className="operator number" children="ss" />
+              <Button className="operator number" children="/" />
+              <Button className="operand number bold" children="7" />
+              <Button className="operand number bold" children="8" />
+              <Button className="operand number bold" children="9" />
+              <Button className="operator number" children="X" />
+              <Button className="operand number bold" children="4" />
+              <Button className="operand number bold" children="5" />
+              <Button className="operand number bold" children="6" />
+              <Button className="operator number" children="-" />
+              <Button className="operand number bold" children="1" />
+              <Button className="operand number bold" children="2" />
+              <Button className="operand number bold" children="3" />
+              <Button className="operator number" children="+" />
+              <Button className="operator number" children="+/-" />
+              <Button className="operand number bold" children="0" />
+              <Button className="operator number" children="." />
+              <Button className="equal number" children="=" />
             </div>
           </div>
         </div>
