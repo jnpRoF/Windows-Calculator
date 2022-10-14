@@ -21,8 +21,9 @@
   height: 80%;
   border: 1px solid #ccc;
   display: flex;
-  align-items: center;
-  justify-content: end;
+  align-items: end;
+  justify-content: center;
+  flex-direction: column;
 }
 .memory_operators {
   height: 7%;
@@ -83,6 +84,6 @@ button {
 .first_operand,
 .second_operand,
 .current_operator {
-  font-size: 48px;
+  font-size: 30px;
   font-weight: bold;
 }

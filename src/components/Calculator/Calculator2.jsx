@@ -139,6 +139,10 @@ class Calculator2 extends Component {
     }
   };
 
+  handleResult = () => {
+    this.setState({ result: this.state.currentOperation.firstOperand });
+  };
+
   render() {
     console.log(
       this.state.currentOperation.firstOperand,
@@ -157,6 +161,7 @@ class Calculator2 extends Component {
               firstOperandDigit={this.state.currentOperation.firstOperand}
               operator={this.state.currentOperation.operator}
               secondOperandDigit={this.state.currentOperation.secondOperand}
+              result={this.state.result}
               // children={
               //   // this.handleOperandDisplay()
               //   this.state.currentOperation.operator
@@ -274,7 +279,9 @@ class Calculator2 extends Component {
                 0
               </Button>
               <Button className="operator number">.</Button>
-              <Button className="equal number">=</Button>
+              <Button className="equal number" onClick={this.handleResult}>
+                =
+              </Button>
             </div>
           </div>
         </div>
