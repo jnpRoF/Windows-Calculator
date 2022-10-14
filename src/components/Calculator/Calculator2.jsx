@@ -129,6 +129,7 @@ class Calculator2 extends Component {
       });
     }
   };
+
   render() {
     console.log(
       this.state.currentOperation.firstOperand,
@@ -157,101 +158,114 @@ class Calculator2 extends Component {
           </div>
           <div className="calc_body_controls">
             <div className="memory_operators">
-              <MemoryBtn children="MC" className="unbold memory_btn" />
-              <MemoryBtn children="MR" className="unbold memory_btn" />
-              <MemoryBtn children="M+" className="bold memory_btn" />
-              <MemoryBtn children="M-" className="bold memory_btn" />
-              <MemoryBtn children="MS" className="bold memory_btn" />
+              <MemoryBtn className="unbold memory_btn">MC</MemoryBtn>
+              <MemoryBtn className="unbold memory_btn">MR</MemoryBtn>
+              <MemoryBtn className="bold memory_btn">M+</MemoryBtn>
+              <MemoryBtn className="bold memory_btn">M-</MemoryBtn>
+              <MemoryBtn className="bold memory_btn">MS</MemoryBtn>
             </div>
             <div className="calc_body_operators">
               <Button
                 className="operator number"
-                children="%"
                 onClick={this.handleOperatorClick}
-              />
-              <Button className="operator number" children="CE" />
-              <Button className="operator number" children="C" />
+              >
+                %
+              </Button>
+              <Button className="operator number">CE</Button>
+              <Button className="operator number">C</Button>
+              <Button className="operator number" onClick={this.handleDelete}>
+                DELETE
+              </Button>
+              <Button className="operator number">1/x</Button>
+              <Button className="operator number">xx</Button>
+              <Button className="operator number">ss</Button>
               <Button
                 className="operator number"
-                children="DELETE"
-                onClick={this.handleDelete}
-              />
-              <Button className="operator number" children="1/x" />
-              <Button className="operator number" children="xx" />
-              <Button className="operator number" children="ss" />
+                onClick={this.handleOperatorClick}
+              >
+                /
+              </Button>
+              <Button
+                className="operand number bold"
+                onClick={this.handleOperandClick}
+              >
+                7
+              </Button>
+              <Button
+                className="operand number bold"
+                onClick={this.handleOperandClick}
+              >
+                8
+              </Button>
+              <Button
+                className="operand number bold"
+                onClick={this.handleOperandClick}
+              >
+                9
+              </Button>
               <Button
                 className="operator number"
-                children="/"
                 onClick={this.handleOperatorClick}
-              />
+              >
+                x
+              </Button>
               <Button
                 className="operand number bold"
-                children="7"
                 onClick={this.handleOperandClick}
-              />
+              >
+                4
+              </Button>
               <Button
                 className="operand number bold"
-                children="8"
                 onClick={this.handleOperandClick}
-              />
+              >
+                5
+              </Button>
               <Button
                 className="operand number bold"
-                children="9"
                 onClick={this.handleOperandClick}
-              />
+              >
+                6
+              </Button>
               <Button
                 className="operator number"
-                children="x"
                 onClick={this.handleOperatorClick}
-              />
+              >
+                -
+              </Button>
               <Button
                 className="operand number bold"
-                children="4"
                 onClick={this.handleOperandClick}
-              />
+              >
+                1
+              </Button>
               <Button
                 className="operand number bold"
-                children="5"
                 onClick={this.handleOperandClick}
-              />
+              >
+                2
+              </Button>
               <Button
                 className="operand number bold"
-                children="6"
                 onClick={this.handleOperandClick}
-              />
+              >
+                3
+              </Button>
               <Button
                 className="operator number"
-                children="-"
                 onClick={this.handleOperatorClick}
-              />
+              >
+                +
+              </Button>
+              <Button className="operator number">+/-</Button>
               <Button
                 className="operand number bold"
-                children="1"
                 onClick={this.handleOperandClick}
-              />
-              <Button
-                className="operand number bold"
-                children="2"
-                onClick={this.handleOperandClick}
-              />
-              <Button
-                className="operand number bold"
-                children="3"
-                onClick={this.handleOperandClick}
-              />
-              <Button
-                className="operator number"
-                children="+"
-                onClick={this.handleOperatorClick}
-              />
-              <Button className="operator number" children="+/-" />
-              <Button
-                className="operand number bold"
-                children="0"
-                onClick={this.handleOperandClick}
-              />
-              <Button className="operator number" children="." />
-              <Button className="equal number" children="=" />
+              >
+                0
+              </Button>
+              <Button className="operator number">.</Button>
+              <Button className="equal number">=</Button>
             </div>
           </div>
         </div>
@@ -270,3 +284,5 @@ export default Calculator2;
 
 // what does stanley when he was talking about putting a jsx inside a function
 //do opening and closing tags
+
+//reason for having separate props for operators
