@@ -14,6 +14,7 @@ class Calculator2 extends Component {
       firstOperand: "",
       secondOperand: "",
       operator: "",
+      current: "",
     },
   };
   // handleOperandDisplay = () => {
@@ -140,7 +141,13 @@ class Calculator2 extends Component {
   };
 
   handleResult = () => {
-    this.setState({ result: this.state.currentOperation.firstOperand });
+    this.setState({
+      result: this.calculate(
+        this.state.currentOperation.operator,
+        +this.state.currentOperation.firstOperand,
+        +this.state.currentOperation.secondOperand
+      ),
+    });
   };
 
   render() {
