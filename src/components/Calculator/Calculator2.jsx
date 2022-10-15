@@ -42,7 +42,6 @@ class Calculator2 extends Component {
     this.setState({
       currentOperation: {
         ...this.state.currentOperation,
-        firstOperand: this.state.currentOperation.current,
       },
     });
   };
@@ -68,6 +67,7 @@ class Calculator2 extends Component {
   };
 
   calculate = (operator, firstOperand, secondOperand) => {
+    console.log(operator);
     switch (operator) {
       case "+":
         return +firstOperand + +secondOperand;
@@ -83,31 +83,61 @@ class Calculator2 extends Component {
     }
   };
   handleOperatorClick = (e) => {
-    this.handleFirstOperand();
+    console.log(
+      typeof this.state.currentOperation.firstOperand,
+      this.state.currentOperation.firstOperand
+    );
+    this.setState({
+      currentOperation: {
+        ...this.state.currentOperation,
+        // firstOperand:
+        //   this.state.currentOperation.current +
+        //   this.state.currentOperation.firstOperand,
+        firstOperand: this.calculate(
+          e.target.textContent,
+          this.state.currentOperation.firstOperand,
+          this.state.currentOperation.current
+        ),
+        current: this.calculate(
+          e.target.textContent,
+          this.state.currentOperation.firstOperand,
+          this.state.currentOperation.current
+        ),
+        operator: e.target.textContent,
+      },
+    });
+  };
+  onOperatorClick = (e) => {
+    // this.handleFirstOperand(e);
+    this.handleOperatorClick(e);
+    // this.setState({
+    //   currentOperation: {
+    //     ...this.state.currentOperation,
+    //     operator: e.target.textContent,
+    //     firstOperand: this.calculate(
+    //       this.state.currentOperation.operator,
+    //       +this.state.currentOperation.firstOperand,
+    //       +this.state.currentOperation.current
+    //     ),
+    //     // operator: e.target.textContent,
+    //   },
+    // });
     console.log(this.state.currentOperation.firstOperand);
-    if (!this.state.currentOperation.secondOperand) {
-      this.setState({
-        currentOperation: {
-          ...this.state.currentOperation,
-          firstOperand:
-            +this.state.currentOperation.current +
-            +this.state.currentOperation.firstOperand,
-          operator: e.target.textContent,
-        },
-      });
-    } else {
-      this.setState({
-        currentOperation: {
-          firstOperand: this.calculate(
-            this.state.currentOperation.operator,
-            +this.state.currentOperation.firstOperand,
-            +this.state.currentOperation.secondOperand
-          ),
-          secondOperand: "",
-          operator: e.target.textContent,
-        },
-      });
-    }
+    // if (!this.state.currentOperation.secondOperand) {
+    // }
+    // else {
+    //   this.setState({
+    //     currentOperation: {
+    //       firstOperand: this.calculate(
+    //         this.state.currentOperation.operator,
+    //         +this.state.currentOperation.firstOperand,
+    //         +this.state.currentOperation.secondOperand
+    //       ),
+    //       secondOperand: "",
+    //       operator: e.target.textContent,
+    //     },
+    //   });
+    // }
     console.log(e.target.textContent);
   };
 
@@ -206,7 +236,7 @@ class Calculator2 extends Component {
             <div className="calc_body_operators">
               <Button
                 className="operator number"
-                onClick={this.handleOperatorClick}
+                onClick={this.onOperatorClick}
               >
                 %
               </Button>
@@ -220,7 +250,7 @@ class Calculator2 extends Component {
               <Button className="operator number">ss</Button>
               <Button
                 className="operator number"
-                onClick={this.handleOperatorClick}
+                onClick={this.onOperatorClick}
               >
                 /
               </Button>
@@ -244,7 +274,7 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.handleOperatorClick}
+                onClick={this.onOperatorClick}
               >
                 x
               </Button>
@@ -268,7 +298,7 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.handleOperatorClick}
+                onClick={this.onOperatorClick}
               >
                 -
               </Button>
@@ -292,7 +322,7 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.handleOperatorClick}
+                onClick={this.onOperatorClick}
               >
                 +
               </Button>
