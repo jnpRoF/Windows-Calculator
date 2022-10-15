@@ -11,8 +11,8 @@ const Screen = ({
     return (
       <div className={className}>
         <div className="current_operation_cont">
-          <span className="first_operand">{firstOperandDigit}</span>
-          <span className="current_operator">{operator}</span>
+          <span className="first_operand display">{firstOperandDigit}</span>
+          <span className="current_operator display">{operator}</span>
         </div>
         <p className="result">{result}</p>
       </div>
@@ -21,10 +21,10 @@ const Screen = ({
     return (
       <div className={className}>
         <div className="current_operation_cont">
-          <span className="first_operand">{firstOperandDigit}</span>
-          <span className="current_operator">{operator}</span>
-          <span className="second_operand">{secondOperandDigit}</span>
-          <span className="equal_operator">=</span>
+          <span className="first_operand display">{firstOperandDigit}</span>
+          <span className="current_operator display">{operator}</span>
+          <span className="second_operand display">{secondOperandDigit}</span>
+          <span className="equal_operator display">=</span>
         </div>
         <p className="result">{result}</p>
       </div>
