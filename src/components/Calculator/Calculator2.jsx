@@ -25,6 +25,14 @@ class Calculator2 extends Component {
 
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
 
+  handleHistoryDisplay = () => {
+    this.setState({ historyNav: "open" });
+  };
+
+  handleMemoryDisplay = () => {
+    this.setState({ historyNav: "close" });
+  };
+
   handleCurrent = (e) => {
     console.log(this.state.clicked);
     if (!this.state.currentOperation.operator) {
@@ -393,15 +401,25 @@ class Calculator2 extends Component {
         </div>
         <div className="calc_nav">
           <div className="calc_nav_header">
-            <SideNavHeader className="calc-history side_nav">
+            <SideNavHeader
+              className="calc-history side_nav"
+              onClick={this.handleHistoryDisplay}
+            >
               History
             </SideNavHeader>
-            <SideNavHeader className="calc-memory side_nav">
+            <SideNavHeader
+              className="calc-memory side_nav"
+              onClick={this.handleMemoryDisplay}
+            >
               Memory
             </SideNavHeader>
           </div>
           <SideNavBody>
-            {this.state.historyNav == "open" ? <HistoryNav /> : <MemoryNav />}
+            {this.state.historyNav == "open" ? (
+              <HistoryNav className="history_nav_body" />
+            ) : (
+              <MemoryNav className="memory_nav_body" />
+            )}
           </SideNavBody>
         </div>
       </div>

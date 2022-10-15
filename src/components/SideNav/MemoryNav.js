@@ -1,5 +1,5 @@
-const MemoryNav = ({ style }) => {
-  return <div style={style}>MemoryNav</div>;
+const MemoryNav = ({ className }) => {
+  return <div className={className}>MemoryNav</div>;
 };
 
 export default MemoryNav;

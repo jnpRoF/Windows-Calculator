@@ -1,5 +1,5 @@
-const HistoryNav = ({ style }) => {
-  return <div style={style}>HistoryNav</div>;
+const HistoryNav = ({ className }) => {
+  return <div className={className}>HistoryNav</div>;
 };
 
 export default HistoryNav;

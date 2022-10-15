@@ -1,13 +1,7 @@
-import SideNavBody from "./SideNavBody";
-
-const SideNavHeader = ({ className, children }) => {
-  const handleSideNavDisplay = () => {
-    // return <HistoryNav>hi</HistoryNav>;
-  };
-
+const SideNavHeader = ({ className, children, onClick }) => {
   return (
     <>
-      <button className={className} onClick={handleSideNavDisplay}>
+      <button className={className} onClick={onClick}>
         {children}
       </button>
     </>

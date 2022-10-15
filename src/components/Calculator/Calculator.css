@@ -112,3 +112,9 @@ button {
   display: block;
   margin-top: 5px;
 }
+.history_nav_body {
+  text-align: end;
+}
+.memory_nav_body {
+  text-align: start;
+}

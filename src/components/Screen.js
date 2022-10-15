@@ -19,7 +19,7 @@ const Screen = ({
     );
   }
   if (!clicked) {
-    console.log("ggy");
+    console.log("ggy"); //it logs every time that clicked is false is this not bad, does this not mean that for every time that it false this code will keep running? What if i don't want it to?
     return (
       <div className={className}>
         <div className="current_operation_cont">
