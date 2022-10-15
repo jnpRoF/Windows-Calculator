@@ -8,21 +8,73 @@ import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
-    result: "",
+    result: 0,
     history: [],
     currentOperation: {
       firstOperand: "",
       secondOperand: "",
       operator: "",
+      current: "",
     },
   };
 
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
 
   handleCurrent = (e) => {
-    this.setState({
-      result: this.state.result + e.target.textContent,
-    });
+    if (!this.state.currentOperation.operator) {
+      this.setState(
+        {
+          currentOperation: {
+            ...this.state.currentOperation,
+            current: this.state.currentOperation.current + e.target.textContent,
+          },
+        },
+        () => {
+          this.setState({ result: this.state.currentOperation.current });
+        }
+      );
+    } else {
+      this.setState(
+        {
+          currentOperation: {
+            ...this.state.currentOperation,
+            current: this.state.currentOperation.current + e.target.textContent,
+          },
+        },
+        () => {
+          this.setState({
+            result: this.state.currentOperation.current,
+            currentOperation: {
+              ...this.state.currentOperation,
+              secondOperand: this.state.currentOperation.current,
+            },
+          });
+        }
+      );
+    }
+    //
+    //   this.setState({
+    //     result: this.state.result + e.target.textContent,
+    //   });
+    // } else {
+    //   this.setState(
+    //     {
+    //       currentOperation: {
+    //         ...this.state.currentOperation,
+    //         current: this.state.currentOperation.current + e.target.textContent,
+    //       },
+    //     },
+    //     () => {
+    //       this.setState({
+    //         result: this.state.currentOperation.current,
+    //         currentOperation: {
+    //           ...this.state.currentOperation,
+    //           // current: "",
+    //         },
+    //       });
+    //     }
+    //   );
+    // }
   };
 
   handleOperatorClick = (e) => {
@@ -31,6 +83,7 @@ class Calculator2 extends Component {
       currentOperation: {
         ...this.state.currentOperation,
         operator: e.target.textContent,
+        current: "",
       },
     });
   };
@@ -104,10 +157,8 @@ class Calculator2 extends Component {
 
   onOperatorClick = (e) => {
     this.handleFirstOperand(e);
-
     // if (!this.state.currentOperation.secondOperand) {
-    // }
-    // else {
+    // } else {
     //   this.setState({
     //     currentOperation: {
     //       firstOperand: this.calculate(
@@ -193,6 +244,7 @@ class Calculator2 extends Component {
               operator={this.state.currentOperation.operator}
               secondOperandDigit={this.state.currentOperation.secondOperand}
               result={this.state.result}
+              current={this.state.currentOperation.current}
             />
           </div>
           <div className="calc_body_controls">
@@ -314,7 +366,11 @@ class Calculator2 extends Component {
                 0
               </Button>
               <Button className="operator number">.</Button>
-              <Button className="equal number" onClick={this.handleResult}>
+              <Button
+                className="equal number"
+                onClick={this.handleResult}
+                clicked={false}
+              >
                 =
               </Button>
             </div>
