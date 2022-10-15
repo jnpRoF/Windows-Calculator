@@ -222,14 +222,25 @@ class Calculator2 extends Component {
   };
 
   handleResult = () => {
-    this.setState({
-      clicked: true,
-      result: this.calculate(
-        this.state.currentOperation.operator,
-        +this.state.currentOperation.firstOperand,
-        +this.state.currentOperation.secondOperand
-      ),
-    });
+    (!this.state.currentOperation.firstOperand &&
+      !this.state.currentOperation.current) ||
+    this.state.currentOperation.current == "0"
+      ? this.setState({
+          currentOperation: {
+            ...this.state.currentOperation,
+            current: "0",
+            operator: "=",
+          },
+          result: 0,
+        })
+      : this.setState({
+          clicked: true,
+          result: this.calculate(
+            this.state.currentOperation.operator,
+            +this.state.currentOperation.firstOperand,
+            +this.state.currentOperation.secondOperand
+          ),
+        });
   };
 
   render() {

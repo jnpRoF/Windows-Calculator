@@ -7,7 +7,19 @@ const Screen = ({
   clicked,
   current,
 }) => {
+  if (current == "0") {
+    return (
+      <div className={className}>
+        <div className="current_operation_cont">
+          <span className="first_operand display">{current}</span>
+          <span className="current_operator display">{operator}</span>
+        </div>
+        <p className="result">{result}</p>
+      </div>
+    );
+  }
   if (!clicked) {
+    console.log("ggy");
     return (
       <div className={className}>
         <div className="current_operation_cont">
@@ -18,6 +30,7 @@ const Screen = ({
       </div>
     );
   } else {
+    console.log(secondOperandDigit);
     return (
       <div className={className}>
         <div className="current_operation_cont">
