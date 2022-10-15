@@ -8,7 +8,7 @@ import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
-    result: "",
+    result: 0,
     history: [],
     currentOperation: {
       firstOperand: "",
@@ -22,10 +22,10 @@ class Calculator2 extends Component {
 
   handleCurrent = (e) => {
     this.setState({
-      currentOperation: {
-        ...this.state.currentOperation,
-        current: e.target.textContent,
-      },
+      result: e.target.textContent,
+      // currentOperation: {
+      //   ...this.state.currentOperation,
+      // },
     });
   };
 
@@ -38,12 +38,13 @@ class Calculator2 extends Component {
   //   }
   // };
   handleFirstOperand = () => {
-    console.log(this.state.currentOperation.current);
     this.setState({
       currentOperation: {
         ...this.state.currentOperation,
+        firstOperand: this.state.result,
       },
     });
+    console.log("first");
   };
 
   handleSecondOperand = (e) => {
@@ -67,7 +68,7 @@ class Calculator2 extends Component {
   };
 
   calculate = (operator, firstOperand, secondOperand) => {
-    console.log(operator);
+    console.log(operator, firstOperand, secondOperand);
     switch (operator) {
       case "+":
         return +firstOperand + +secondOperand;
@@ -82,34 +83,41 @@ class Calculator2 extends Component {
         break;
     }
   };
+  // handleResultState = (handleCurrent) => {
+  //   this.setState({ result: !this.state.currentOperation.firstOperand ? handleCurrent() });
+  // };
   handleOperatorClick = (e) => {
-    console.log(
-      typeof this.state.currentOperation.firstOperand,
-      this.state.currentOperation.firstOperand
-    );
     this.setState({
+      result: this.state.currentOperation.firstOperand,
       currentOperation: {
         ...this.state.currentOperation,
-        // firstOperand:
-        //   this.state.currentOperation.current +
-        //   this.state.currentOperation.firstOperand,
-        firstOperand: this.calculate(
-          e.target.textContent,
-          this.state.currentOperation.firstOperand,
-          this.state.currentOperation.current
-        ),
-        current: this.calculate(
-          e.target.textContent,
-          this.state.currentOperation.firstOperand,
-          this.state.currentOperation.current
-        ),
+        firstOperand: !this.state.currentOperation.firstOperand
+          ? this.state.result
+          : this.calculate(
+              this.state.currentOperation.operator
+                ? this.state.currentOperation.operator
+                : e.target.textContent,
+              // e.target.textContent,
+              this.state.currentOperation.firstOperand,
+              this.state.result
+            ),
+        // firstOperand: this.state.result,
         operator: e.target.textContent,
+
+        //
+        // current: this.calculate(
+        //   e.target.textContent,
+        //   this.state.currentOperation.firstOperand,
+        //   this.state.currentOperation.current
+        // ),
       },
     });
+    // handleResultState();
   };
-  onOperatorClick = (e) => {
-    // this.handleFirstOperand(e);
-    this.handleOperatorClick(e);
+  onOperatorClick = (e, handleOperatorClick) => {
+    this.handleFirstOperand();
+    console.log(this.state.currentOperation.firstOperand);
+    handleOperatorClick(e, this.handleResultState);
     // this.setState({
     //   currentOperation: {
     //     ...this.state.currentOperation,
@@ -122,7 +130,7 @@ class Calculator2 extends Component {
     //     // operator: e.target.textContent,
     //   },
     // });
-    console.log(this.state.currentOperation.firstOperand);
+
     // if (!this.state.currentOperation.secondOperand) {
     // }
     // else {
@@ -138,7 +146,6 @@ class Calculator2 extends Component {
     //     },
     //   });
     // }
-    console.log(e.target.textContent);
   };
 
   handleDelete = () => {
@@ -198,10 +205,6 @@ class Calculator2 extends Component {
   };
 
   render() {
-    console.log(
-      this.state.currentOperation.firstOperand,
-      this.state.currentOperation.secondOperand
-    );
     return (
       <div className="calculator">
         <div className="calc_body">
@@ -236,7 +239,9 @@ class Calculator2 extends Component {
             <div className="calc_body_operators">
               <Button
                 className="operator number"
-                onClick={this.onOperatorClick}
+                onClick={(e) => {
+                  this.onOperatorClick(e, this.handleOperatorClick);
+                }}
               >
                 %
               </Button>
@@ -250,7 +255,9 @@ class Calculator2 extends Component {
               <Button className="operator number">ss</Button>
               <Button
                 className="operator number"
-                onClick={this.onOperatorClick}
+                onClick={(e) => {
+                  this.onOperatorClick(e, this.handleOperatorClick);
+                }}
               >
                 /
               </Button>
@@ -274,7 +281,9 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.onOperatorClick}
+                onClick={(e) => {
+                  this.onOperatorClick(e, this.handleOperatorClick);
+                }}
               >
                 x
               </Button>
@@ -298,7 +307,9 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.onOperatorClick}
+                onClick={(e) => {
+                  this.onOperatorClick(e, this.handleOperatorClick);
+                }}
               >
                 -
               </Button>
@@ -322,7 +333,9 @@ class Calculator2 extends Component {
               </Button>
               <Button
                 className="operator number"
-                onClick={this.onOperatorClick}
+                onClick={(e) => {
+                  this.onOperatorClick(e, this.handleOperatorClick);
+                }}
               >
                 +
               </Button>
