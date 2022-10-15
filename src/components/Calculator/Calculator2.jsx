@@ -4,7 +4,10 @@ import Mode from "../Mode/Mode";
 import Screen from "../Screen";
 import MemoryBtn from "../Memory/Memory";
 import Button from "../Button";
-import SideNav from "../SideNav/SideNav";
+import SideNavHeader from "../SideNav/SideNavHeader";
+import HistoryNav from "../SideNav/HistoryNav";
+import MemoryNav from "../SideNav/MemoryNav";
+import SideNavBody from "../SideNav/SideNavBody";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
@@ -17,6 +20,7 @@ class Calculator2 extends Component {
       operator: "",
       current: "",
     },
+    historyNav: "open",
   };
 
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
@@ -388,8 +392,17 @@ class Calculator2 extends Component {
           </div>
         </div>
         <div className="calc_nav">
-          <SideNav className="calc-history" children="History" />
-          <SideNav className="calc-memory" children="Memory" />
+          <div className="calc_nav_header">
+            <SideNavHeader className="calc-history side_nav">
+              History
+            </SideNavHeader>
+            <SideNavHeader className="calc-memory side_nav">
+              Memory
+            </SideNavHeader>
+          </div>
+          <SideNavBody>
+            {this.state.historyNav == "open" ? <HistoryNav /> : <MemoryNav />}
+          </SideNavBody>
         </div>
       </div>
     );
