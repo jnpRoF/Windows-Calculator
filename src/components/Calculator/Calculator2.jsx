@@ -8,13 +8,12 @@ import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
-    result: 0,
+    result: "",
     history: [],
     currentOperation: {
       firstOperand: "",
       secondOperand: "",
       operator: "",
-      current: 0,
     },
   };
 
@@ -22,10 +21,7 @@ class Calculator2 extends Component {
 
   handleCurrent = (e) => {
     this.setState({
-      result: e.target.textContent,
-      // currentOperation: {
-      //   ...this.state.currentOperation,
-      // },
+      result: this.state.result + e.target.textContent,
     });
   };
 
@@ -34,19 +30,9 @@ class Calculator2 extends Component {
       result: this.state.currentOperation.firstOperand,
       currentOperation: {
         ...this.state.currentOperation,
-
-        // firstOperand: this.state.result,
         operator: e.target.textContent,
-
-        //
-        // current: this.calculate(
-        //   e.target.textContent,
-        //   this.state.currentOperation.firstOperand,
-        //   this.state.currentOperation.current
-        // ),
       },
     });
-    // handleResultState();
   };
 
   // handleOperandDisplay = () => {
@@ -62,14 +48,13 @@ class Calculator2 extends Component {
       {
         currentOperation: {
           ...this.state.currentOperation,
-          firstOperand:
-            this.state.currentOperation.firstOperand === ""
-              ? this.state.result
-              : this.calculate(
-                  this.state.currentOperation.operator,
-                  +this.state.currentOperation.firstOperand,
-                  +this.state.result
-                ),
+          firstOperand: !this.state.currentOperation.firstOperand
+            ? this.state.result
+            : this.calculate(
+                this.state.currentOperation.operator,
+                +this.state.currentOperation.firstOperand,
+                +this.state.result
+              ),
         },
       },
       () => {
@@ -116,25 +101,9 @@ class Calculator2 extends Component {
         break;
     }
   };
-  // handleResultState = (handleCurrent) => {
-  //   this.setState({ result: !this.state.currentOperation.firstOperand ? handleCurrent() });
-  // };
 
   onOperatorClick = (e) => {
     this.handleFirstOperand(e);
-    // this.handleOperatorClick(e);
-    // this.setState({
-    //   currentOperation: {
-    //     ...this.state.currentOperation,
-    //     operator: e.target.textContent,
-    //     firstOperand: this.calculate(
-    //       this.state.currentOperation.operator,
-    //       +this.state.currentOperation.firstOperand,
-    //       +this.state.currentOperation.current
-    //     ),
-    //     // operator: e.target.textContent,
-    //   },
-    // });
 
     // if (!this.state.currentOperation.secondOperand) {
     // }
@@ -224,13 +193,6 @@ class Calculator2 extends Component {
               operator={this.state.currentOperation.operator}
               secondOperandDigit={this.state.currentOperation.secondOperand}
               result={this.state.result}
-              current={this.state.currentOperation.current}
-              // children={
-              //   // this.handleOperandDisplay()
-              //   this.state.currentOperation.operator
-              //     ? this.state.currentOperation.secondOperand
-              //     : this.state.currentOperation.firstOperand
-              // }
             />
           </div>
           <div className="calc_body_controls">
