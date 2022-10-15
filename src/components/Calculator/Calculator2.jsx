@@ -8,6 +8,7 @@ import SideNav from "../SideNav/SideNav";
 import "./Calculator.css";
 class Calculator2 extends Component {
   state = {
+    clicked: false,
     result: 0,
     history: [],
     currentOperation: {
@@ -21,6 +22,7 @@ class Calculator2 extends Component {
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
 
   handleCurrent = (e) => {
+    console.log(this.state.clicked);
     if (!this.state.currentOperation.operator) {
       this.setState(
         {
@@ -221,6 +223,7 @@ class Calculator2 extends Component {
 
   handleResult = () => {
     this.setState({
+      clicked: true,
       result: this.calculate(
         this.state.currentOperation.operator,
         +this.state.currentOperation.firstOperand,
@@ -245,6 +248,7 @@ class Calculator2 extends Component {
               secondOperandDigit={this.state.currentOperation.secondOperand}
               result={this.state.result}
               current={this.state.currentOperation.current}
+              clicked={this.state.clicked}
             />
           </div>
           <div className="calc_body_controls">
@@ -366,11 +370,7 @@ class Calculator2 extends Component {
                 0
               </Button>
               <Button className="operator number">.</Button>
-              <Button
-                className="equal number"
-                onClick={this.handleResult}
-                clicked={false}
-              >
+              <Button className="equal number" onClick={this.handleResult}>
                 =
               </Button>
             </div>

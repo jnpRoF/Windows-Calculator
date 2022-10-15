@@ -87,3 +87,7 @@ button {
   font-size: 30px;
   font-weight: bold;
 }
+.current_operation_cont {
+  display: flex;
+  align-items: center;
+}
