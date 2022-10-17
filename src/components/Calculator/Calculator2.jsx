@@ -25,16 +25,6 @@ class Calculator2 extends Component {
 
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
 
-  //   style = {
-  // //  ::after
-  //   content: "",
-  //   height: "3px",
-  //   backgroundColor: "#494949",
-  //   width: "10%",
-  //   display: "block",
-  //   marginTop: "5px",
-
-  //   }
   handleHistoryDisplay = () => {
     this.setState({ historyNav: "open" });
   };
@@ -43,62 +33,53 @@ class Calculator2 extends Component {
     this.setState({ historyNav: "close" });
   };
 
+  // componentDidUpdate(_, prevState) {
+  //   console.log({
+  //     p: prevState.currentOperation.current,
+  //     s: this.state.currentOperation.current,
+  //   });
+  //   if (
+  //     prevState.currentOperation.current !== this.state.currentOperation.current
+  //   ) {
+  //     console.log("...");
+  //     this.setState({ result: this.state.currentOperation.current });
+  //   }
+  //   console.log(this.state.result);
+  // }
+
   handleCurrent = (e) => {
     console.log(this.state.clicked);
     if (!this.state.currentOperation.operator) {
+      const current =
+        this.state.currentOperation.current + e.target.textContent;
+
       this.setState(
         {
           currentOperation: {
             ...this.state.currentOperation,
-            current: this.state.currentOperation.current + e.target.textContent,
+            current,
           },
-        },
-        () => {
-          this.setState({ result: this.state.currentOperation.current });
+          result: current,
         }
+
+        // () => {
+        //   this.setState({ result: this.state.currentOperation.current });
+        // }  // setting state inside setstate call back maybe wrong but check it out
       );
+
+      //setstate is asynchronous while this.state is synchronus
     } else {
-      this.setState(
-        {
-          currentOperation: {
-            ...this.state.currentOperation,
-            current: this.state.currentOperation.current + e.target.textContent,
-          },
+      const current =
+        this.state.currentOperation.current + e.target.textContent;
+      this.setState({
+        currentOperation: {
+          ...this.state.currentOperation,
+          current,
+          secondOperand: current,
         },
-        () => {
-          this.setState({
-            result: this.state.currentOperation.current,
-            currentOperation: {
-              ...this.state.currentOperation,
-              secondOperand: this.state.currentOperation.current,
-            },
-          });
-        }
-      );
+        result: current,
+      });
     }
-    //
-    //   this.setState({
-    //     result: this.state.result + e.target.textContent,
-    //   });
-    // } else {
-    //   this.setState(
-    //     {
-    //       currentOperation: {
-    //         ...this.state.currentOperation,
-    //         current: this.state.currentOperation.current + e.target.textContent,
-    //       },
-    //     },
-    //     () => {
-    //       this.setState({
-    //         result: this.state.currentOperation.current,
-    //         currentOperation: {
-    //           ...this.state.currentOperation,
-    //           // current: "",
-    //         },
-    //       });
-    //     }
-    //   );
-    // }
   };
 
   handleOperatorClick = (e) => {
@@ -112,14 +93,12 @@ class Calculator2 extends Component {
     });
   };
 
-  // handleOperandDisplay = () => {
-  //   if (this.state.currentOperation.operator) {
-  //     return this.state.currentOperation.secondOperand;
-  //   } else {
-  //     console.log("first");
-  //     return this.state.currentOperation.firstOperand;
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.firstOperand !== this.state.currentOperation.firstOperand) {
+  //     this.handleOperatorClick(e); //maybe passing a callback inside setstate is good when you want pass a function inside
+
   //   }
-  // };
+  // }
   handleFirstOperand = (e) => {
     this.setState(
       {
@@ -181,20 +160,6 @@ class Calculator2 extends Component {
 
   onOperatorClick = (e) => {
     this.handleFirstOperand(e);
-    // if (!this.state.currentOperation.secondOperand) {
-    // } else {
-    //   this.setState({
-    //     currentOperation: {
-    //       firstOperand: this.calculate(
-    //         this.state.currentOperation.operator,
-    //         +this.state.currentOperation.firstOperand,
-    //         +this.state.currentOperation.secondOperand
-    //       ),
-    //       secondOperand: "",
-    //       operator: e.target.textContent,
-    //     },
-    //   });
-    // }
   };
 
   handleDelete = () => {
@@ -453,3 +418,8 @@ export default Calculator2;
 //can we have two return statements if not why?
 
 //what happens when we run two setStates consecutivelu, do they run simultaneuosly or what
+
+/**
+ * implement equal btn feature
+ * ddss
+ */
