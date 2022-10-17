@@ -25,6 +25,16 @@ class Calculator2 extends Component {
 
   // this.setState({ current: this.state.currentOperation.firstOperand }); //what if i do this
 
+  //   style = {
+  // //  ::after
+  //   content: "",
+  //   height: "3px",
+  //   backgroundColor: "#494949",
+  //   width: "10%",
+  //   display: "block",
+  //   marginTop: "5px",
+
+  //   }
   handleHistoryDisplay = () => {
     this.setState({ historyNav: "open" });
   };
@@ -402,13 +412,17 @@ class Calculator2 extends Component {
         <div className="calc_nav">
           <div className="calc_nav_header">
             <SideNavHeader
-              className="calc-history side_nav"
+              className={`calc-history ${
+                this.state.historyNav == "open" ? "side_nav" : ""
+              }`}
               onClick={this.handleHistoryDisplay}
             >
               History
             </SideNavHeader>
             <SideNavHeader
-              className="calc-memory side_nav"
+              className={`calc-memory ${
+                this.state.historyNav == "close" ? "side_nav" : ""
+              }`}
               onClick={this.handleMemoryDisplay}
             >
               Memory

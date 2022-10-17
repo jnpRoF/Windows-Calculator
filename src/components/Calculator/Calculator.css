@@ -96,7 +96,8 @@ button {
 .calc_nav_header {
   display: flex;
 }
-.side_nav {
+.calc-history,
+.calc-memory {
   height: 40px;
   margin: 5px;
   padding: 10px;
@@ -104,11 +105,11 @@ button {
   font-weight: 900;
   font-size: 18px;
 }
-.side_nav:focus::after {
+.side_nav::after {
   content: "";
   height: 3px;
   background-color: #494949;
-  width: 10%;
+  width: 100%;
   display: block;
   margin-top: 5px;
 }
