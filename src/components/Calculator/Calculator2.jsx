@@ -82,44 +82,12 @@ class Calculator2 extends Component {
     }
   };
 
-  handleOperatorClick = (e) => {
-    this.setState({
-      result: this.state.currentOperation.firstOperand,
-      currentOperation: {
-        ...this.state.currentOperation,
-        operator: e.target.textContent,
-        current: "",
-      },
-    });
-  };
-
   // componentDidUpdate(prevProps, prevState) {
   //   if (prevState.firstOperand !== this.state.currentOperation.firstOperand) {
   //     this.handleOperatorClick(e); //maybe passing a callback inside setstate is good when you want pass a function inside
 
   //   }
   // }
-  handleFirstOperand = (e) => {
-    this.setState(
-      {
-        currentOperation: {
-          ...this.state.currentOperation,
-          firstOperand: !this.state.currentOperation.firstOperand
-            ? this.state.result
-            : this.calculate(
-                this.state.currentOperation.operator,
-                +this.state.currentOperation.firstOperand,
-                +this.state.result
-              ),
-        },
-      },
-      () => {
-        console.log(this.state.currentOperation.firstOperand);
-
-        this.handleOperatorClick(e);
-      }
-    );
-  };
 
   handleSecondOperand = (e) => {
     this.setState({
@@ -129,16 +97,6 @@ class Calculator2 extends Component {
           this.state.currentOperation.secondOperand + e.target.textContent,
       },
     });
-  };
-
-  handleOperandClick = (e) => {
-    if (this.state.currentOperation.operator) {
-      this.handleSecondOperand(e);
-      console.log(this.state.currentOperation.secondOperand);
-    } else {
-      this.handleFirstOperand(e);
-      console.log(this.state.currentOperation.firstOperand);
-    }
   };
 
   calculate = (operator, firstOperand, secondOperand) => {
@@ -156,6 +114,37 @@ class Calculator2 extends Component {
       default:
         break;
     }
+  };
+
+  handleOperatorClick = (e) => {
+    this.setState({
+      result: this.state.currentOperation.firstOperand,
+      currentOperation: {
+        ...this.state.currentOperation,
+        operator: e.target.textContent,
+        current: "",
+      },
+    });
+  };
+
+  handleFirstOperand = (e) => {
+    this.setState(
+      {
+        currentOperation: {
+          ...this.state.currentOperation,
+          firstOperand: !this.state.currentOperation.firstOperand
+            ? this.state.result
+            : this.calculate(
+                this.state.currentOperation.operator,
+                +this.state.currentOperation.firstOperand,
+                +this.state.result
+              ),
+        },
+      },
+      () => {
+        this.handleOperatorClick(e);
+      }
+    );
   };
 
   onOperatorClick = (e) => {
@@ -417,9 +406,4 @@ export default Calculator2;
 
 //can we have two return statements if not why?
 
-//what happens when we run two setStates consecutivelu, do they run simultaneuosly or what
-
-/**
- * implement equal btn feature
- * ddss
- */
+//what happens when we run two setStates consecutively, do they run simultaneuosly or what
