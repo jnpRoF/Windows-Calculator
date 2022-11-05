@@ -200,7 +200,7 @@ class Calculator2 extends Component {
   handleResult = () => {
     (!this.state.currentOperation.firstOperand &&
       !this.state.currentOperation.current) ||
-    this.state.currentOperation.current == "0"
+    this.state.currentOperation.current === "0"
       ? this.setState({
           currentOperation: {
             ...this.state.currentOperation,
@@ -367,7 +367,7 @@ class Calculator2 extends Component {
           <div className="calc_nav_header">
             <SideNavHeader
               className={`calc-history ${
-                this.state.historyNav == "open" ? "side_nav" : ""
+                this.state.historyNav === "open" ? "side_nav" : ""
               }`}
               onClick={this.handleHistoryDisplay}
             >
@@ -375,7 +375,7 @@ class Calculator2 extends Component {
             </SideNavHeader>
             <SideNavHeader
               className={`calc-memory ${
-                this.state.historyNav == "close" ? "side_nav" : ""
+                this.state.historyNav === "close" ? "side_nav" : ""
               }`}
               onClick={this.handleMemoryDisplay}
             >
@@ -383,7 +383,7 @@ class Calculator2 extends Component {
             </SideNavHeader>
           </div>
           <SideNavBody>
-            {this.state.historyNav == "open" ? (
+            {this.state.historyNav === "open" ? (
               <HistoryNav className="history_nav_body" />
             ) : (
               <MemoryNav className="memory_nav_body" />

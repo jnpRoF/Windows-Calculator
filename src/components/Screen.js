@@ -7,7 +7,7 @@ const Screen = ({
   clicked,
   current,
 }) => {
-  if (current == "0") {
+  if (current === "0") {
     return (
       <div className={className}>
         <div className="current_operation_cont">
